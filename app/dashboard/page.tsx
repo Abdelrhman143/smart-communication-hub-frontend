@@ -1,3 +1,9 @@
+import ChatSideBar from "../_components/ChatSideBar";
+
 export default function page() {
-  return <div></div>;
+  return (
+    <div>
+      <ChatSideBar />
+    </div>
+  );
 }
