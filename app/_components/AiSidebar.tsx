@@ -3,7 +3,7 @@ import React from "react";
 import { useSidebar } from "../Context/Sidebar.context";
 
 export default function AiSidebar() {
-  const { toggleSidebar, isSidebarOpen } = useSidebar();
+  const { toggleSidebar } = useSidebar();
   return (
     <div className="bg-white border-l-2 border-gray-200 w-70 min-h-dvh ">
       {/* header */}
