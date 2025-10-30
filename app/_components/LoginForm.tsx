@@ -4,6 +4,9 @@ import { Input } from "@/components/ui/input";
 import { LoginFormData, loginSchema } from "@/lib/schema/auth.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { useAuth } from "../Context/Auth.context";
+import { loginUserService } from "@/lib/services/auth.service";
+import { useState } from "react";
 export default function LoginForm() {
   const {
     register,
@@ -11,12 +14,27 @@ export default function LoginForm() {
     formState: { errors, isSubmitting },
   } = useForm<LoginFormData>({ resolver: zodResolver(loginSchema) });
 
-  const onSubmit = (data: LoginFormData) => {
+  const { login } = useAuth();
+  const [apiError, setApiError] = useState<string | null>(null);
+
+  async function onSubmit(data: LoginFormData) {
     console.log("Login Data:", data);
-    // send data to API
-  };
+    setApiError(null);
+    try {
+      const response = await loginUserService(data);
+
+      login(response.token, response.userId, response.name);
+    } catch (error) {
+      if (error instanceof Error) {
+        setApiError(error.message);
+      } else {
+        setApiError("error unexpected");
+      }
+    }
+  }
   return (
-    <form className="space-y-3" onSubmit={handleSubmit(onSubmit)} action="">
+    <form className="space-y-3" onSubmit={handleSubmit(onSubmit)}>
+      {apiError && <p className="text-red-500 text-sm">{apiError}</p>}
       <Input
         {...register("email")}
         type="email"

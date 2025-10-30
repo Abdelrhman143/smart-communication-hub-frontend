@@ -48,7 +48,7 @@ export default function Features() {
   ];
 
   return (
-    <section className="my-15">
+    <section className="mb-15">
       <div>
         <h2 className="text-center text-4xl font-bold">
           Everything You Need for Smart Communication
