@@ -52,5 +52,6 @@ export async function getMeService(token: string) {
   if (!res.ok) {
     throw new Error(responseData.error || "session expired");
   }
+  console.log("response Data from getMeService", responseData);
   return responseData;
 }

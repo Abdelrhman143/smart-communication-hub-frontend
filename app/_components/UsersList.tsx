@@ -1,10 +1,12 @@
 "use client";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import User from "./User";
 import { fetchUsers } from "@/lib/services/user.service";
 import { useAuth } from "../Context/Auth.context";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import SmallSpinner from "./SmallSpinner";
+import { useSocket } from "../Context/Socket.context";
 
 export type Users = {
   id: number;
@@ -14,13 +16,16 @@ export type Users = {
 
 export default function UsersList() {
   const { token } = useAuth();
+
   const [users, setUsers] = useState<Users[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
     if (token) {
       const loadedUsers = async () => {
+        setIsLoading(true);
         try {
           const userList = await fetchUsers(token);
           setUsers(userList);
@@ -34,11 +39,17 @@ export default function UsersList() {
           if (error instanceof Error) {
             setError(error.message);
           }
+        } finally {
+          setIsLoading(false);
         }
       };
       loadedUsers();
     }
   }, [token]);
+
+  if (isLoading) {
+    return <SmallSpinner />;
+  }
 
   return (
     <div>

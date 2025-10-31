@@ -31,7 +31,7 @@ export default function LoadingSpinner({
     >
       <div
         style={sizeStyle}
-        className="animate-spin rounded-full border-4 border-gray-200 border-t-blue-600"
+        className="animate-spin rounded-full border-4 border-gray-200 border-t-MainColor"
       />
       {/* assistive text for screen readers */}
       <span className="sr-only">{label}</span>

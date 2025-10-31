@@ -2,11 +2,13 @@
 import { BadgeQuestionMark, NotebookText, Sparkle } from "lucide-react";
 import React from "react";
 import { useSidebar } from "../Context/Sidebar.context";
+import useOnclickOutside from "react-cool-onclickoutside";
 
 export default function AiSidebar() {
-  const { toggleSidebar } = useSidebar();
+  const { isSidebarOpen, toggleSidebar, closeSidebar } = useSidebar();
+
   return (
-    <div className="bg-white border-l-2 border-gray-200 w-70 min-h-dvh ">
+    <div className="bg-white border-l-2 border-gray-200 w-70 min-h-dvh  transition ">
       {/* header */}
       <div className="p-5 border-b-2 border-gray-200 flex items-center">
         <h1 className="font-semibold text-2xl">Ai insights</h1>

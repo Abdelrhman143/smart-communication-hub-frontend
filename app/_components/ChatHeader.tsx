@@ -1,8 +1,14 @@
 import { Menu, Sparkles } from "lucide-react";
 import { useSidebar } from "../Context/Sidebar.context";
+import { useSocket } from "../Context/Socket.context";
+import { useParams } from "next/navigation";
 
 export default function ChatHeader() {
+  const params = useParams();
+
   const { toggleSidebar, isSidebarOpen } = useSidebar();
+  const { isUserOnline } = useSocket();
+  const isAtive = isUserOnline(Number(params.id));
   return (
     <div className="p-5 flex items-center gap-5 bg-white">
       {!isSidebarOpen && (
@@ -13,7 +19,7 @@ export default function ChatHeader() {
       </div>
       <div>
         <h3 className="font-semibold">Abdelrahman Tharwat</h3>
-        <p className="text-gray-500">active Now</p>
+        <p className="text-gray-500">{isAtive ? "active Now" : "ofline"}</p>
       </div>
 
       <Sparkles

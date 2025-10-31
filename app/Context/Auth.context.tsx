@@ -1,6 +1,7 @@
 "use client";
 import { getMeService } from "@/lib/services/auth.service";
 import { useRouter } from "next/navigation";
+
 import { createContext, useContext, useEffect, useState } from "react";
 
 type valuesType = {
@@ -20,6 +21,7 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
   const [name, setName] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
+
   function logout() {
     setToken(null);
     setName(null);
@@ -41,7 +43,8 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
       try {
         const userData = await getMeService(storedToken);
         setToken(storedToken);
-        setUserId(parseInt(userData.userId));
+        console.log("user ID from checkAuthStatus", userData.id);
+        setUserId(parseInt(userData.id));
         setName(userData.name);
       } catch (error) {
         logout();
