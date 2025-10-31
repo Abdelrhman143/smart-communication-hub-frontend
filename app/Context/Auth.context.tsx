@@ -40,7 +40,7 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
     const checkAuthStatus = async () => {
       try {
         const userData = await getMeService(storedToken);
-        setToken(userData);
+        setToken(storedToken);
         setUserId(parseInt(userData.userId));
         setName(userData.name);
       } catch (error) {

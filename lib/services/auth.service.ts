@@ -40,7 +40,7 @@ export async function loginUserService(data: LoginFormData) {
 }
 
 export async function getMeService(token: string) {
-  const res = await fetch(`${BASE_URL}/me`, {
+  const res = await fetch(`${BASE_URL}/auth/me`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
