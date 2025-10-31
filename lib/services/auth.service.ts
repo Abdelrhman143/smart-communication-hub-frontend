@@ -1,4 +1,3 @@
-import { error } from "console";
 import { LoginFormData, RegisterFormData } from "../schema/auth.schema";
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL;

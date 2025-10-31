@@ -1,3 +1,4 @@
+"use client";
 import { useSidebar } from "../Context/Sidebar.context";
 
 type Props = {

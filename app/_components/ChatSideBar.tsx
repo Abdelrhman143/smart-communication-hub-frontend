@@ -4,6 +4,7 @@ import User from "./User";
 import { useSidebar } from "../Context/Sidebar.context";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "../Context/Auth.context";
+import UsersList from "./UsersList";
 
 export default function ChatSideBar() {
   const { toggleSidebar } = useSidebar();
@@ -15,23 +16,14 @@ export default function ChatSideBar() {
         <div>
           <h1 className="font-semibold text-2xl">Messages</h1>
           <span className="text-gray-500">3 online</span>
-          <div className="lg:hidden block size-5" onClick={() => logout()}>
+          <div className=" block size-5" onClick={() => logout()}>
             <LogOut />
           </div>
         </div>
         <Menu className="lg:hidden" onClick={() => toggleSidebar("chat")} />
       </div>
       {/* list of users */}
-      <User />
-      <User />
-      <User />
-      <User />
-      <User />
-      <User />
-      <User />
-      <User />
-      <User />
-      <User />
+      <UsersList />
     </div>
   );
 }

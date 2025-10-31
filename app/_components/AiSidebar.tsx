@@ -1,3 +1,4 @@
+"use client";
 import { BadgeQuestionMark, NotebookText, Sparkle } from "lucide-react";
 import React from "react";
 import { useSidebar } from "../Context/Sidebar.context";

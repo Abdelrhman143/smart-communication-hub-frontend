@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { AuthProvider } from "./Context/Auth.context";
 import { Toaster } from "react-hot-toast";
+import { SocketProvider } from "./Context/Socket.context";
 
 export const metadata: Metadata = {
   title: "smart communication hub",
@@ -18,7 +19,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <AuthProvider>{children}</AuthProvider>
+        <AuthProvider>
+          <SocketProvider>{children}</SocketProvider>
+        </AuthProvider>
         <Toaster />
       </body>
     </html>
