@@ -74,7 +74,7 @@ export default function Chat() {
   return (
     <div className="flex flex-col h-screen">
       <ChatHeader />
-      <div className="flex flex-col justify-between h-full">
+      <div className="flex flex-col justify-between h-full overflow-y-auto">
         <Messages
           messages={messages}
           currentUserId={currentUserId}
