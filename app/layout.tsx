@@ -8,6 +8,9 @@ import { SocketProvider } from "./Context/Socket.context";
 
 export const metadata: Metadata = {
   title: "smart communication hub",
+  icons: {
+    icon: "/favicon.ico",
+  },
   description:
     "Experience the future of communication with real-time chat enhanced by AI-powered sentiment analysis",
 };
