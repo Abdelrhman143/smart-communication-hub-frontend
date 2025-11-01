@@ -1,3 +1,4 @@
+// Small spinner - Compact loading indicator for inline use (smaller than LoadingSpinner)
 export default function SmallSpinner() {
   return (
     <div className="flex justify-center items-center h-full">

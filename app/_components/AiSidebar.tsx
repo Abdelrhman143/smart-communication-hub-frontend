@@ -1,3 +1,4 @@
+// AI Sidebar - Displays AI-powered conversation insights (summary and sentiment analysis)
 "use client";
 import { BadgeQuestionMark, NotebookText, Sparkle } from "lucide-react";
 import { useSidebar } from "../Context/Sidebar.context";
@@ -23,12 +24,14 @@ export default function AiSidebar() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  // Fetch AI insights when user or conversation changes
   useEffect(() => {
     if (!token || !selectedUserId || !currentUserId) {
       setInsights(null);
       return;
     }
 
+    // Fetch messages and analyze with AI
     const fetchAiInsights = async () => {
       setIsLoading(true);
       setError(null);

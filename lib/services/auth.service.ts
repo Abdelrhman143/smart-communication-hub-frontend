@@ -1,7 +1,9 @@
+// Auth service - Handles user authentication API calls (register, login, get current user)
 import { LoginFormData, RegisterFormData } from "../schema/auth.schema";
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
+// Register new user account
 export async function registerUserService(data: RegisterFormData) {
   const res = await fetch(`${BASE_URL}/auth/register`, {
     method: "POST",
@@ -20,6 +22,7 @@ export async function registerUserService(data: RegisterFormData) {
   return responseData;
 }
 
+// Login existing user and get auth token
 export async function loginUserService(data: LoginFormData) {
   console.log(BASE_URL);
   const res = await fetch(`${BASE_URL}/auth/login`, {
@@ -39,6 +42,7 @@ export async function loginUserService(data: LoginFormData) {
   return responseData;
 }
 
+// Get current authenticated user info using token
 export async function getMeService(token: string) {
   const res = await fetch(`${BASE_URL}/auth/me`, {
     method: "GET",

@@ -1,10 +1,10 @@
+// Features section - Displays grid of platform features with animations on homepage
 "use client";
 import { useEffect } from "react";
 import Feature from "./Feature";
 import "aos/dist/aos.css";
 import AOS from "aos";
-import { MessageCircleMore, MoveUpRight, TrendingUp, Zap } from "lucide-react";
-import { features } from "process";
+import { MessageCircleMore, TrendingUp, Zap } from "lucide-react";
 
 type Props = {
   heading: string;
@@ -12,6 +12,7 @@ type Props = {
   icon: React.ReactNode;
 };
 export default function Features() {
+  // Initialize AOS (Animate On Scroll) library for feature animations
   useEffect(() => {
     AOS.init({
       duration: 1000,

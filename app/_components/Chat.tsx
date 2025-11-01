@@ -1,3 +1,4 @@
+// Chat component - Main chat interface with messages, real-time updates via Socket.IO, and message input
 "use client";
 import { useParams } from "next/navigation";
 import { useSidebar } from "../Context/Sidebar.context";
@@ -26,6 +27,7 @@ export default function Chat() {
   const selectedUserId = params.id;
   const [isMessagesLoading, setIsMessagesLoading] = useState(true);
 
+  // Load messages when user or conversation changes
   useEffect(() => {
     if (token && selectedUserId) {
       const LoadedMessages = async () => {
@@ -48,6 +50,7 @@ export default function Chat() {
     }
   }, [token, selectedUserId]);
 
+  // Listen for real-time messages via Socket.IO
   useEffect(() => {
     if (!socket) return;
 
@@ -62,6 +65,7 @@ export default function Chat() {
     };
   }, [socket]);
 
+  // Send message through Socket.IO
   function handleSendMessage(newMessage: string) {
     console.log("message after sent to parent", newMessage);
     if (!socket || !selectedUserId) return;

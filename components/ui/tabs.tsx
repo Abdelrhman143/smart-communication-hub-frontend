@@ -1,3 +1,4 @@
+// Tabs component - Tabbed interface for switching between content sections (shadcn/ui)
 "use client"
 
 import * as React from "react"

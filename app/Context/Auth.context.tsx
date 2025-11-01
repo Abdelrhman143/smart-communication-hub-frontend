@@ -1,3 +1,4 @@
+// Auth context - Manages user authentication state, login, logout, and token persistence
 "use client";
 import { getMeService } from "@/lib/services/auth.service";
 import { useRouter } from "next/navigation";
@@ -22,6 +23,7 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
 
+  // Clear auth state and redirect to home
   function logout() {
     setToken(null);
     setName(null);
@@ -31,6 +33,8 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
     localStorage.removeItem("name");
     router.push("/");
   }
+  
+  // Check authentication status on mount - validate stored token
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
 
@@ -55,6 +59,7 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
     checkAuthStatus();
   }, []);
 
+  // Set auth state and persist to localStorage, redirect to dashboard
   function login(token: string, userId: number, name: string) {
     setToken(token);
     setUserId(userId);

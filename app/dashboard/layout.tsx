@@ -1,3 +1,4 @@
+// Dashboard layout - Protected layout with chat sidebar, AI sidebar, and mobile sidebar controllers
 import AiSidebar from "../_components/AiSidebar";
 import ChatSideBar from "../_components/ChatSideBar";
 import Protected from "../_components/Protected";

@@ -1,9 +1,10 @@
+// User component - Individual user item in sidebar with avatar, name, and online status indicator
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSidebar } from "../Context/Sidebar.context";
 import { Users } from "./UsersList";
 import { useParams } from "next/navigation";
-import { fetchMessages } from "@/lib/services/message.service";
+
 import { Message } from "react-hook-form";
 import { useSocket } from "../Context/Socket.context";
 

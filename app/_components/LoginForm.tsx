@@ -1,3 +1,4 @@
+// Login form - Handles user login with email/password validation and authentication
 "use client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -17,6 +18,7 @@ export default function LoginForm() {
   const { login } = useAuth();
   const [apiError, setApiError] = useState<string | null>(null);
 
+  // Handle form submission - authenticate user and update auth context
   async function onSubmit(data: LoginFormData) {
     console.log("Login Data:", data);
     setApiError(null);

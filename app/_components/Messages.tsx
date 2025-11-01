@@ -1,5 +1,6 @@
+// Messages list - Displays all messages in conversation with loading and empty states
 import { Message } from "./Chat";
-import LoadingSpinner from "./LoadingSpinner";
+
 import MessageBox from "./MessageBox";
 import SmallSpinner from "./SmallSpinner";
 

@@ -1,3 +1,4 @@
+// Auth schema - Zod validation schemas for login and registration forms
 import { z } from "zod";
 
 export const registerSchema = z.object({

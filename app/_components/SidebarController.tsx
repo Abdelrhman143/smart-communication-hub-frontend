@@ -1,3 +1,4 @@
+// Sidebar controller - Controls mobile sidebar visibility (chat or AI sidebar)
 "use client";
 import { useSidebar } from "../Context/Sidebar.context";
 

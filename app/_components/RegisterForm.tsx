@@ -1,3 +1,4 @@
+// Register form - Handles user registration with name, email, password validation
 "use client";
 
 import { Button } from "@/components/ui/button";
@@ -19,6 +20,7 @@ export default function RegisterForm() {
   } = useForm<RegisterFormData>({ resolver: zodResolver(registerSchema) });
   const [apiError, setApiError] = useState<string | null>(null);
 
+  // Handle form submission - register new user and show success message
   async function onSubmit(data: RegisterFormData) {
     console.log("register Data:", data);
     setApiError(null);

@@ -1,4 +1,4 @@
-import { MessageCircleMore } from "lucide-react";
+// Feature card component - Displays individual feature with icon, heading, and description
 
 type Props = {
   heading: string;

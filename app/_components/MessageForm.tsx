@@ -1,3 +1,4 @@
+// Message form - Input field and send button for composing and sending messages
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Send } from "lucide-react";
@@ -10,6 +11,7 @@ export default function MessageForm({
 }) {
   const [message, setMessage] = useState("");
 
+  // Handle form submission - send message and clear input
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (message.trim()) {

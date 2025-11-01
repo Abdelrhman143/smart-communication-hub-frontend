@@ -1,3 +1,4 @@
+// Root layout - Wraps entire app with providers (Auth, Socket) and global styles
 import type { Metadata } from "next";
 
 import "./globals.css";

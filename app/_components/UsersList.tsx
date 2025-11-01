@@ -1,3 +1,4 @@
+// Users list - Fetches and displays all available users for messaging, auto-redirects to first user
 "use client";
 import { useEffect, useState } from "react";
 import User from "./User";
@@ -6,7 +7,6 @@ import { useAuth } from "../Context/Auth.context";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import SmallSpinner from "./SmallSpinner";
-import { useSocket } from "../Context/Socket.context";
 
 export type Users = {
   id: number;
@@ -22,6 +22,7 @@ export default function UsersList() {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
+  // Load users list and auto-redirect to first user if on dashboard root
   useEffect(() => {
     if (token) {
       const loadedUsers = async () => {
@@ -29,6 +30,7 @@ export default function UsersList() {
         try {
           const userList = await fetchUsers(token);
           setUsers(userList);
+          // Auto-redirect to first user's chat if on dashboard root
           if (
             userList.length > 0 &&
             window.location.pathname === "/dashboard"

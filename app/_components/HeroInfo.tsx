@@ -1,3 +1,4 @@
+// Hero section - Main landing page hero with animated typewriter text and feature badges
 "use client";
 import { BotMessageSquare, Wifi } from "lucide-react";
 import Typewriter from "typewriter-effect";

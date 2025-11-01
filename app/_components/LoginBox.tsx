@@ -1,3 +1,4 @@
+// Login box - Tabbed container for login and registration forms on homepage
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";

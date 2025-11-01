@@ -1,3 +1,4 @@
+// MessageBox - Individual message bubble component with timestamp and sent/received styling
 type ChatMessageProps = {
   message: string;
   timestamp: string;
@@ -9,6 +10,8 @@ export default function MessageBox({
   timestamp,
   isSent,
 }: ChatMessageProps) {
+  const dateObject = new Date(timestamp);
+  const readableTime = dateObject.toLocaleString();
   return (
     <div className={`flex gap-2 mb-4 ${isSent ? "flex-row-reverse" : ""}`}>
       <div
@@ -20,7 +23,7 @@ export default function MessageBox({
         <span
           className={` text-xs ${isSent ? "text-gray-300" : "text-gray-500"} `}
         >
-          {timestamp}
+          {readableTime}
         </span>
       </div>
     </div>

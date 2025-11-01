@@ -1,15 +1,16 @@
+// Chat sidebar - Displays list of users for messaging, logout button, and online user count
 "use client";
 import { LogOut, Menu } from "lucide-react";
-import User from "./User";
+
 import { useSidebar } from "../Context/Sidebar.context";
-import { Button } from "@/components/ui/button";
+
 import { useAuth } from "../Context/Auth.context";
 import UsersList from "./UsersList";
-import useOnclickOutside from "react-cool-onclickoutside";
+
 import { useSocket } from "../Context/Socket.context";
 
 export default function ChatSideBar() {
-  const { isSidebarOpen, toggleSidebar, closeSidebar } = useSidebar();
+  const { toggleSidebar } = useSidebar();
   const { onlineUsers } = useSocket();
 
   const { logout } = useAuth();

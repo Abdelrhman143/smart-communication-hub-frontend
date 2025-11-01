@@ -1,3 +1,4 @@
+// Socket context - Manages Socket.IO connection, online users list, and real-time messaging
 "use client";
 
 import { createContext, useContext, useEffect, useState } from "react";
@@ -21,12 +22,14 @@ function SocketProvider({ children }: { children: React.ReactNode }) {
   const [isConnected, setIsConnected] = useState(false);
   const [onlineUsers, setOnlineUsers] = useState<string[]>([]);
 
+  // Check if specific user is online
   const isUserOnline = (id: number | string): boolean => {
     const idString = String(id);
 
     return onlineUsers.includes(idString);
   };
 
+  // Initialize Socket.IO connection when user is authenticated
   useEffect(() => {
     if (isLoading || !userId || !token) {
       if (socket) {
@@ -39,12 +42,14 @@ function SocketProvider({ children }: { children: React.ReactNode }) {
 
     const newSocket = io(URL);
 
+    // Send userId to server on connection
     newSocket.on("connect", () => {
       setIsConnected(true);
 
       newSocket.emit("send_userId", userId);
     });
 
+    // Update online users list when server sends update
     newSocket.on("update_online_users", (userIds: string[]) => {
       setOnlineUsers(userIds);
     });

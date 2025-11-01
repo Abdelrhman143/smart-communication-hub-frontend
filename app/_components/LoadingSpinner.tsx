@@ -1,5 +1,5 @@
+// Loading spinner - Full-screen or inline loading indicator with customizable size and label
 "use client";
-import React from "react";
 
 type LoadingSpinnerProps = {
   size?: number | string;

@@ -1,3 +1,4 @@
+// Chat header - Displays chat user info, online status, and sidebar toggle buttons
 import { Menu, Sparkles } from "lucide-react";
 import { useSidebar } from "../Context/Sidebar.context";
 import { useSocket } from "../Context/Socket.context";

@@ -1,3 +1,4 @@
+// Dashboard root page - Shows loading spinner, redirects to specific chat when user selected
 import LoadingSpinner from "../_components/LoadingSpinner";
 
 export default function page() {
