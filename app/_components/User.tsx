@@ -1,17 +1,16 @@
 // User component - Individual user item in sidebar with avatar, name, and online status indicator
 "use client";
-import { useState } from "react";
+
 import { useSidebar } from "../Context/Sidebar.context";
 import { Users } from "./UsersList";
 import { useParams } from "next/navigation";
 
-import { Message } from "react-hook-form";
 import { useSocket } from "../Context/Socket.context";
 
 export default function User({ user }: { user: Users }) {
   const parms = useParams();
   const activeUserId = parms.id ? Number(parms.id) : undefined;
-  const [messages, setMessages] = useState<Message[]>([]);
+
   const { closeSidebar } = useSidebar();
 
   const { isUserOnline } = useSocket();
