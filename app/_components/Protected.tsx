@@ -2,6 +2,7 @@
 import { useEffect } from "react";
 import { useAuth } from "../Context/Auth.context";
 import { useRouter } from "next/navigation";
+import LoadingSpinner from "./LoadingSpinner";
 
 export default function Protected({ children }: { children: React.ReactNode }) {
   const { token, isLoading } = useAuth();
@@ -15,11 +16,7 @@ export default function Protected({ children }: { children: React.ReactNode }) {
     }
   }, [isLoading, router, token]);
   if (isLoading) {
-    return (
-      <div className="flex justify-center items-center h-screen text-5xl">
-        we are champion
-      </div>
-    );
+    return <LoadingSpinner />;
   }
   if (token) {
     return <>{children}</>;

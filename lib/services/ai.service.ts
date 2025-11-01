@@ -45,8 +45,6 @@ export async function getAIInsights(
     }
   }
 
-  console.log("Merged Chat History Ready:", mergedChatHistory);
-
   const finalPrompt = `You are an AI conversation analyst. Analyze the entire chat log provided above.
 Give me a short and direct answer in JSON format (with no extra text, no markdown, and no comments).
 The JSON should contain: {"summary": "...", "sentiment": "positive" or "negative"}.`;
@@ -78,6 +76,6 @@ The JSON should contain: {"summary": "...", "sentiment": "positive" or "negative
 
   const responseData = await res.json();
   const jsonText = responseData.candidates[0].content.parts[0].text.trim();
-  console.log("Gemini Raw JSON Output:", jsonText);
+
   return JSON.parse(jsonText);
 }

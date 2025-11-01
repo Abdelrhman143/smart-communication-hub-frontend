@@ -12,7 +12,7 @@ export async function registerUserService(data: RegisterFormData) {
       password: data.password,
     }),
   });
-  console.log(res);
+
   const responseData = await res.json();
   if (!res.ok) {
     throw Error(responseData.error || "error in register");
