@@ -12,7 +12,7 @@ export async function fetchMessages(token: string, otherUserId: number) {
   });
   const responseData = await res.json();
   if (!res.ok) {
-    throw new Error(responseData.error || "فشل جلب الرسائل");
+    throw new Error(responseData.error);
   }
 
   return responseData;
