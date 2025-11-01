@@ -14,7 +14,7 @@ Smart Communication Hub is a full-featured real-time chat application that combi
 
 ## 🚀 Live Demo
 
-[View Project on netlify](smart-communication-hub.netlify.app)
+[View Project on netlify](https://smart-communication-hub.netlify.app/)
 
 ## 🛠️ Tools & Libraries Used
 
