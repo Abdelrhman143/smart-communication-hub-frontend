@@ -50,6 +50,46 @@ Smart Communication Hub is a full-featured real-time chat application that combi
 - **ESLint 9** - Code linting
 - **Next ESLint Config** - Next.js ESLint configuration
 
+## 🤖 AI Tools Used in Development
+
+This project leveraged AI tools to accelerate development and enhance functionality. Here's where and why AI was utilized:
+
+### 1. Lovable - AI-Powered Website Builder
+
+**Where it was used:**
+- Initial design and layout inspiration
+- Understanding platform structure and component organization
+- UI/UX design patterns and best practices
+
+**Why it was used:**
+- **Design Inspiration**: Lovable helped visualize how the communication platform should look and function, providing a solid foundation for the user interface
+- **Time Efficiency**: Instead of creating multiple designs from scratch in Figma (which had been done before), Lovable provided a quick way to explore different design approaches and iterate faster
+- **Platform Understanding**: The AI tool helped conceptualize the overall structure, component relationships, and user flow of a modern communication platform
+
+This approach significantly reduced the time spent on design iteration compared to traditional Figma-based design workflows, allowing for faster prototyping and development.
+
+### 2. Google Gemini - AI Integration & Development Assistance
+
+**Where it was used:**
+- **Development**: Understanding how to integrate and call the Gemini Flash API
+- **Implementation**: Getting guidance on API structure, request formatting, and response handling for AI insights feature
+- **Runtime**: The application uses Gemini 2.5 Flash API to provide real-time conversation analysis
+
+**Why it was used:**
+- **API Integration Help**: Gemini AI was used as a development assistant to understand how to properly call the Gemini Flash API, including request formats, authentication, and response parsing
+- **Feature Implementation**: The AI insights feature (conversation summaries and sentiment analysis) is powered by Gemini Flash API, which required understanding the API's capabilities and integration patterns
+- **Learning Curve**: Instead of spending extensive time reading documentation and trial-and-error, Gemini helped quickly understand the API structure and implementation requirements
+
+**Note**: While Gemini was used as a development assistant, the final implementation in `lib/services/ai.service.ts` integrates Gemini Flash API to provide actual AI-powered features in the application.
+
+---
+
+**Summary**: AI tools were strategically used to:
+- Accelerate the design process (Lovable)
+- Understand complex API integrations (Gemini)
+- Reduce development time while maintaining code quality
+- Provide the actual AI functionality within the application (Gemini Flash API)
+
 ## 🚀 Getting Started
 
 ### Prerequisites
