@@ -14,8 +14,6 @@ export default function Messages({
   currentUserId,
   isLoading,
 }: MessagesProps) {
-  console.log(currentUserId);
-
   if (isLoading) {
     return <SmallSpinner />;
   }

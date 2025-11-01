@@ -41,7 +41,7 @@ function SocketProvider({ children }: { children: React.ReactNode }) {
 
     newSocket.on("connect", () => {
       setIsConnected(true);
-      console.log("Socket.IO Connected!");
+
       newSocket.emit("send_userId", userId);
     });
 

@@ -14,28 +14,50 @@ export async function getAIInsights(
   if (!GEMINI_API_KEY) {
     throw new Error("Gemini API key is not configured.");
   }
-  const formatedChat = messagesList
-    .map((message) => {
-      const sender = message.senderId === currentUserId ? "me" : "other user";
-      return `${sender}: ${message.text}`;
-    })
-    .join("\n");
 
-  const prompt = `You are an AI conversation analyst. Analyze the following chat log between "Me" and "The other party".
-Give me a short and direct answer in JSON format (with no extra text before or after the JSON).
-The JSON should contain:
-1. summary: a short summary of the main topic of the conversation.
-2. sentiment: the overall sentiment of the conversation. Return ONLY "positive" or "negative" (choose the closest one).
+  const mergedChatHistory = [];
+  let lastRole: "user" | "model" | null = null;
+  let isFirstMessage = true;
 
-Chat Log:
----
-${formatedChat}
----`;
+  for (const message of messagesList) {
+    if (!message.text || message.text.trim() === "") continue;
+
+    let currentRole: "user" | "model" =
+      message.senderId === currentUserId ? "user" : "model"; // 🛑 FIX: إذا كانت الرسالة الأولى هي 'model'، نجعلها 'user' لتفادي خطأ 400
+
+    if (isFirstMessage && currentRole === "model") {
+      console.log("Adjusting first message role to user.");
+      currentRole = "user";
+    }
+    isFirstMessage = false;
+
+    if (currentRole === lastRole) {
+      // دمج: إذا كان الدور متكررًا
+      const lastContentIndex = mergedChatHistory.length - 1;
+      mergedChatHistory[lastContentIndex].parts[0].text += "\n" + message.text;
+    } else {
+      // إضافة: إذا كان الدور مختلفًا
+      mergedChatHistory.push({
+        role: currentRole,
+        parts: [{ text: message.text }],
+      });
+      lastRole = currentRole;
+    }
+  }
+
+  console.log("Merged Chat History Ready:", mergedChatHistory);
+
+  const finalPrompt = `You are an AI conversation analyst. Analyze the entire chat log provided above.
+Give me a short and direct answer in JSON format (with no extra text, no markdown, and no comments).
+The JSON should contain: {"summary": "...", "sentiment": "positive" or "negative"}.`;
+
+  mergedChatHistory.push({
+    role: "user",
+    parts: [{ text: finalPrompt }],
+  });
+
   const requestBody = {
-    contents: [{ parts: [{ text: prompt }] }],
-    config: {
-      responseMimeType: "application/json",
-    },
+    contents: mergedChatHistory,
   };
 
   const res = await fetch(`${GEMINI_API_URL}?key=${GEMINI_API_KEY}`, {
@@ -47,14 +69,15 @@ ${formatedChat}
   });
 
   if (!res.ok) {
-    const errorData = await res.json();
+    const errorText = await res.text();
+    console.error("Raw API Error Response:", errorText);
     throw new Error(
-      `Gemini API Error: ${errorData.error.message || "Failed to analyze chat"}`
+      `Gemini API Error: Status ${res.status}. Check console for raw error response.`
     );
   }
 
   const responseData = await res.json();
-  const jsonText = responseData.candidates[0].content.parts[0].text;
-  console.log(jsonText);
+  const jsonText = responseData.candidates[0].content.parts[0].text.trim();
+  console.log("Gemini Raw JSON Output:", jsonText);
   return JSON.parse(jsonText);
 }

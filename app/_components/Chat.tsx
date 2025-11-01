@@ -34,7 +34,7 @@ export default function Chat() {
             token,
             Number(selectedUserId)
           );
-          console.log("messages coming form backend", messagesList);
+
           setMessages(messagesList.messages);
         } catch (error) {
           if (error instanceof Error) {

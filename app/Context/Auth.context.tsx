@@ -43,7 +43,7 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
       try {
         const userData = await getMeService(storedToken);
         setToken(storedToken);
-        console.log("user ID from checkAuthStatus", userData.id);
+
         setUserId(parseInt(userData.id));
         setName(userData.name);
       } catch (error) {
