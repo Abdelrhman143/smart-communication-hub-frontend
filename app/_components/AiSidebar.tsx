@@ -99,7 +99,7 @@ export default function AiSidebar() {
             Chat mood
           </h4>
           <span className="bg-MainColor px-4 py-1 text-white rounded-full text-xs">
-            {isLoading || insights === undefined
+            {isLoading || insights === null
               ? "Analyzing..."
               : `${insights?.sentiment}`}
           </span>
@@ -110,7 +110,7 @@ export default function AiSidebar() {
             Conversation Summary
           </h4>
           <p className=" text-gray-500 text-xs">
-            {isLoading || insights === undefined
+            {isLoading || insights === null
               ? "generating..."
               : `${insights?.summary}`}
           </p>
